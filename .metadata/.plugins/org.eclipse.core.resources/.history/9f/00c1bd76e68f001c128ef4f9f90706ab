@@ -46,18 +46,8 @@
 	
 	pstmt.execute();
 	
-	String sql2 = "select max(content_idx) as read_content_idx from content_table "
-				+ "where content_board_idx = ?";
-	
-	PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-	pstmt2.setInt(1, content_board_idx);
-	ResultSet rs = pstmt2.executeQuery();
-	rs.next();
-	int read_content_idx = rs.getInt("read_content_idx");
-	
 	conn.close();
 %>
-<%= read_content_idx %>
 
 
 
