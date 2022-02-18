@@ -8,7 +8,13 @@
 	String str1 = request.getParameter("content_board_idx");
 	int content_board_idx = Integer.parseInt(str1);
 	
-	String dbUrl = "jdbc:mysql://localhost:3306/android";
+	String str2 = request.getParameter("page_num");
+	int page_num = Integer.parseInt(str2);
+	
+	int startIndex = (page_num - 1) * 10;
+	
+	
+	String dbUrl = "jdbc:mysql://localhost:3306/app3_community_db";
 	String dbId = "root";
 	String dbPw = "whdgns1002@";
 	
@@ -26,11 +32,15 @@
 		sql += "and a1.content_board_idx = ? ";
 	}
 		    
-	sql += "order by a1.content_idx desc";
+	sql += "order by a1.content_idx desc limit ?, 10";
+	
 	
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	if(content_board_idx != 0){
 		pstmt.setInt(1, content_board_idx);
+		pstmt.setInt(2, startIndex);
+	} else {
+		pstmt.setInt(1, startIndex);
 	}
 	
 	ResultSet rs = pstmt.executeQuery();
