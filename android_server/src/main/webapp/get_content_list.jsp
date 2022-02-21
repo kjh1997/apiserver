@@ -14,7 +14,7 @@
 	int startIndex = (page_num - 1) * 10;
 	
 	
-	String dbUrl = "jdbc:mysql://localhost:3306/app3_community_db";
+	String dbUrl = "jdbc:mysql://host.docker.internal:3306/android";
 	String dbId = "root";
 	String dbPw = "whdgns1002@";
 	
